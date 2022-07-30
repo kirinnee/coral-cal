@@ -15,7 +15,7 @@ const input = ref("");
 const date = ref("2022-08-08")
 
 function createICS() {
-  const d= date.value
+  const d = date.value
   const tz = ZoneId.of("Singapore");
   const localDate = LocalDate.parse(d);
   const timeHelper = new JodaTimeHelper(localDate);
@@ -24,7 +24,7 @@ function createICS() {
   const converter = new RealConverter(core);
   const courses = converter.Parse(input.value);
   const events = courses
-      .Map( c => converter.Convert(c))
+      .Map(c => converter.Convert(c))
       .Map(c => mapper.MapTimeTable(c))
       .Flatten<TimetableEvent>();
   const ical = ics.Create(events);
@@ -64,16 +64,17 @@ function createICS() {
       </i-alert>
 
       <i-input v-model="date" type="date" placeholder="Enter a date..">
-          <template #prefix>Enter the day of any date of Week 1</template>
+          <template #prefix ><p class="_color:secondary _font-size:lg">Enter the date of any day in Week 1</p></template>
       </i-input>
       <i-textarea v-model="input" placeholder="Input NTU timetable here..." style="height: 350px"/>
       <i-button
           color="primary" block
-          class="_margin-top:2"
+          class="_margin-top:2 _margin-bottom:4"
           @click="createICS"
       >Generate calendar</i-button>
-
+      <div class="_position:fixed _display:block _background:dark footer _padding:1 _font-size:lg" >Made by <a  href="https://kirinnee.dev" >Ernest Ng</a>. Please help me star my repository on <a href="https://github.com/kirinnee">GitHub</a> if this helped you! Feel free to contact me if this isn't working.</div>
     </i-header>
+
   </div>
 </template>
 
@@ -82,6 +83,12 @@ function createICS() {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
+}
+
+.footer {
+  left:0;
+  bottom: 0;
+  width: 100vw;
 }
 
 .logo:hover {
@@ -93,32 +100,32 @@ function createICS() {
 }
 
 .bg {
-  animation:slide 6s ease-in-out infinite alternate;
+  animation: slide 6s ease-in-out infinite alternate;
   background-image: linear-gradient(-60deg, #ffce31 50%, #ff3030 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
-  position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-1;
+  bottom: 0;
+  left: -50%;
+  opacity: .5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
 }
 
 .bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:8s;
+  animation-direction: alternate-reverse;
+  animation-duration: 8s;
 }
 
 .bg3 {
-  animation-duration:10s;
+  animation-duration: 10s;
 }
 
 @keyframes slide {
   0% {
-    transform:translateX(-25%);
+    transform: translateX(-25%);
   }
   100% {
-    transform:translateX(25%);
+    transform: translateX(25%);
   }
 }
 

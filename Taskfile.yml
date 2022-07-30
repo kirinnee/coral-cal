@@ -9,7 +9,7 @@ tasks:
     desc: Run development server
     cmds:
       - pnpm run dev
-  test:watch:
+  test:
     desc: Run tests
     cmds:
       - pnpm run test
