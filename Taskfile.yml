@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: Setup
+    cmds:
+      - pnpm install
+  start:
+    desc: Run development server
+    cmds:
+      - pnpm run dev
+  test:watch:
+    desc: Run tests
+    cmds:
+      - pnpm run test

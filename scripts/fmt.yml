@@ -1,0 +1,29 @@
+version: "3"
+
+tasks:
+  sh:
+    desc: Format shellscripts
+    cmds:
+      - shfmt -w .
+  md:
+    desc: Formats Markdown with prettier
+    cmds:
+      - prettier -w "**/*.MD" "!node_modules"
+      - prettier -w "**/*.md" "!node_modules"
+    ignore_error: true
+  js:
+    desc: Formats JavaScript and TypeScript
+    cmds:
+      - prettier -w "**/*.ts" "!node_modules"
+      - prettier -w "**/*.js" "!node_modules"
+    ignore_error: true
+  yaml:
+    desc: Formats YAML with prettier
+    cmds:
+      - prettier -w "**/*.yaml" "!node_modules"
+      - prettier -w "**/*.yml" "!node_modules"
+
+  nix:
+    desc: Formats Nix files
+    cmds:
+      - nixpkgs-fmt .
